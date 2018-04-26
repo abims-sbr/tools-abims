@@ -1,0 +1,17 @@
+<tool id="abims_oligator" name="Oligator" version="1.1" >
+        <!-- author : acormier@sb-roscoff.fr -->
+        <!-- date : 16-11-12 -->
+    <description>Oligator : design PCR primers</description>
+    <command interpreter="python">
+    	/usr/local/genome2/oligator/oligatorV1.1_cmdLine.py --input $FILEIN --tm $TM
+    </command>
+    <inputs>
+        <param type="data" format="fasta" name="FILEIN" label="DNA sequence - fasta format" />
+        <param type="text" name="TM" label="Tm temperature" />
+    </inputs>
+    <outputs>
+       <data name="oligator_results" format="csv" from_work_dir="oligator_results.csv" label="Oligator_global" />
+       <data name="oligator_sens" format="csv" from_work_dir="oligator_sens.csv" label="Oligator_sens" />
+       <data name="oligator_anti-sens" format="csv" from_work_dir="oligator_anti-sens.csv" label="Oligator_anti-sens" />
+    </outputs>
+</tool>
