@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 #Author : LECHAUVE Eric - eric_lechauve@yahoo.fr
 #Command line version (03/09/2013) : CORMIER Alexandre - acormier@sb-roscoff.fr
+#Command line version (26/04/2018) : LE CORGUILLE Gildas - lecorguille@sb-roscoff.fr
 
 ###################################import des librairies########################################
 import math                         #module de mathematique
@@ -10,24 +11,19 @@ import argparse                     #module pour parser les arguments
 
 ##################################creation du module pour les options###########################################
 
-parser = OptionParser(usage="usage: python %prog --input <file> --tm <int> --output <string>",version="%prog v1.1")
-parser.add_option("-i","--input",action="store", dest="file",help="input file : fasta format")
-parser.add_option("-t","--tm",action="store", type="int", dest="Tm",help="Tm value")
-parser.add_option("-o","--output",action="store", dest="output",help="output filename")
+parser = argparse.ArgumentParser(description="Oligator : design PCR primers")
+parser.add_argument("-i", "--input", action="store", dest="file", type=open, required=True, help="input file : fasta format")
+parser.add_argument("-t", "--tm", action="store", type=int, dest="Tm", required=True, help="Tm value")
+parser.add_argument("-o", "--output", action="store", dest="output", type=argparse.FileType('w'), help="output filename")
+parser.add_argument('--version', action='version', version='%(prog)s v1.1')
 
-(options, args) = parser.parse_args()
+options = parser.parse_args()
 
-if options.file == None:
-    print 'Veuillez indiquer un fichier fasta'
-    exit()
-if options.Tm == None:
-    print 'Veuillez donner une valeur de Tm'
-    exit()
-fileIn=options.file
+fileIn=options.file.name
 Tm=options.Tm
 Out='oligator' #nom par defaut (utile pour Galaxy)
 if options.output!=None:
-    Out=options.output
+    Out=options.output.name
 
 ##################################Fonction###########################################
 def traitefasta(n,tm,nom_sortie) :
@@ -104,6 +100,7 @@ def traitefasta(n,tm,nom_sortie) :
         j=0                        #initialisation du Tm
         seq = dico[x]              #la variable seq recoit la sequence correspondante a la cle
         oligo=''                   #initialisation de l'oligo
+        inv=''
         while j < temp:            #tant que le Tm est inferieur a 70 la boucle continue
             if seq[i] == 'A' :     #test le nucleotide de rang i
                 j=j+2

@@ -1,17 +1,40 @@
-<tool id="abims_oligator" name="Oligator" version="1.1" >
-        <!-- author : acormier@sb-roscoff.fr -->
-        <!-- date : 16-11-12 -->
-    <description>Oligator : design PCR primers</description>
-    <command interpreter="python">
-    	/usr/local/genome2/oligator/oligatorV1.1_cmdLine.py --input $FILEIN --tm $TM
-    </command>
+<tool id="oligator" name="Oligator" version="1.1.1" >
+
+    <description>Oligator: design PCR primers</description>
+
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package" version="1.4.0">argparse</requirement>
+    </requirements>
+
+    <command><![CDATA[
+        python $__tool_directory__/oligator/oligatorV1.1_cmdLine.py --input $input --tm $tm
+    ]]></command>
     <inputs>
-        <param type="data" format="fasta" name="FILEIN" label="DNA sequence - fasta format" />
-        <param type="text" name="TM" label="Tm temperature" />
+        <param argument="--input" type="data" format="fasta" label="DNA sequence - fasta format" />
+        <param argument="--tm" type="integer" value="70" label="Tm temperature" />
     </inputs>
     <outputs>
-       <data name="oligator_results" format="csv" from_work_dir="oligator_results.csv" label="Oligator_global" />
-       <data name="oligator_sens" format="csv" from_work_dir="oligator_sens.csv" label="Oligator_sens" />
-       <data name="oligator_anti-sens" format="csv" from_work_dir="oligator_anti-sens.csv" label="Oligator_anti-sens" />
+       <data name="oligator_results" format="tabular" from_work_dir="oligator_results.csv" label="Oligator_global" />
+       <data name="oligator_sens" format="tabular" from_work_dir="oligator_sens.csv" label="Oligator_sens" />
+       <data name="oligator_anti_sens" format="tabular" from_work_dir="oligator_anti-sens.csv" label="Oligator_anti-sens" />
     </outputs>
+    <tests>
+        <test>
+            <param name="input" value="allseqfasta.fas" ftype="fasta" />
+            <param name="tm" value="70" />
+            <output name="oligator_results" value="oligator_results.csv" />
+            <output name="oligator_sens" value="oligator_sens.csv" />
+            <output name="oligator_anti_sens" value="oligator_anti-sens.csv" />
+        </test>
+    </tests>
+    <help><![CDATA[
+.. class:: infomark
+
+**Authors**
+Oligator a ete realise par Frederic Lechauve frederic_lechauve@yahoo.fr
+and integrated in Galaxy by ABiMS - Station Biologique de Roscoff - Sorbonne Université / CNRS
+
+    ]]></help>
+    <citations/>
 </tool>
