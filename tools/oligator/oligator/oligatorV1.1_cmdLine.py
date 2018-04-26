@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding:utf-8 -*-
-#Author : LECHAUVE Eric - eric_lechauve@yahoo.fr
+#Author : LECHAUVE Frederic - frederic_lechauve@yahoo.fr
 #Command line version (03/09/2013) : CORMIER Alexandre - acormier@sb-roscoff.fr
 #Command line version (26/04/2018) : LE CORGUILLE Gildas - lecorguille@sb-roscoff.fr
 
@@ -11,7 +11,7 @@ import argparse                     #module pour parser les arguments
 
 ##################################creation du module pour les options###########################################
 
-parser = argparse.ArgumentParser(description="Oligator : design PCR primers")
+parser = argparse.ArgumentParser(description="Oligator : design PCR primers\n")
 parser.add_argument("-i", "--input", action="store", dest="file", type=open, required=True, help="input file : fasta format")
 parser.add_argument("-t", "--tm", action="store", type=int, dest="Tm", required=True, help="Tm value")
 parser.add_argument("-o", "--output", action="store", dest="output", type=argparse.FileType('w'), help="output filename")
@@ -82,7 +82,7 @@ def traitefasta(n,tm,nom_sortie) :
         sortie.write('Tm = ')
         sortie.write(j)
         sortie.write('\n')
-        sortie.write('la taille de l\'oligo est ')
+        sortie.write('The oligo length is ')
         sortie.write(taille)
         sortie.write(' nucleotide(s)\n\n')
 
@@ -127,7 +127,7 @@ def traitefasta(n,tm,nom_sortie) :
         sortie.write('Tm = ')
         sortie.write(j)
         sortie.write('\n')
-        sortie.write('la taille de l\'oligo est ')
+        sortie.write('The oligo length is ')
         sortie.write(taille)
         sortie.write(' nucleotide(s)\n\n')
 
