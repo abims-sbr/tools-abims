@@ -1,0 +1,8 @@
+categories: [Sequence Analysis]
+description: Oligator: design PCR primers
+homepage_url: http://www.sb-roscoff.fr/
+long_description: 'Oligator was written by Frederic Lechauve frederic_lechauve@yahoo.fr
+  and integrated in Galaxy by ABiMS - Station Biologique de Roscoff - Sorbonne Université / CNRS'
+name: oligator
+owner: abims-sbr
+remote_repository_url: https://github.com/abims-sbr/tools-abims/tree/master/tools/oligator
