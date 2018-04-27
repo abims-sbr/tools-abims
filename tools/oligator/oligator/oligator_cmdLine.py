@@ -26,7 +26,7 @@ parser.add_argument(
     "-o", "--output", action="store", dest="output",
     type=argparse.FileType('w'), help="output filename")
 parser.add_argument(
-    '--version', action='version', version='%(prog)s v1.1')
+    '--version', action='version', version='%(prog)s v1.2')
 
 options = parser.parse_args()
 

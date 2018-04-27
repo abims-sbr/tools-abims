@@ -1,4 +1,4 @@
-<tool id="oligator" name="Oligator" version="1.1.1" >
+<tool id="oligator" name="Oligator" version="1.2.0" >
 
     <description>Oligator: design PCR primers</description>
 
@@ -8,7 +8,7 @@
     </requirements>
 
     <command><![CDATA[
-        python $__tool_directory__/oligator/oligatorV1.1_cmdLine.py --input $input --tm $tm
+        python $__tool_directory__/oligator/oligator_cmdLine.py --input $input --tm $tm
     ]]></command>
     <inputs>
         <param argument="--input" type="data" format="fasta" label="DNA sequence - fasta format" />
