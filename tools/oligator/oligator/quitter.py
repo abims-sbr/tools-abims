@@ -1,7 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-from Tkinter import *                          # get widget classes
+from Tkinter import BOTH, Button, Frame, LEFT, YES        # get widget classes
+
 from tkMessageBox import askokcancel           # get canned std dialog
+
 
 class Quitter(Frame):                          # subclass our GUI
     def __init__(self, parent=None):           # constructor method
@@ -9,9 +11,14 @@ class Quitter(Frame):                          # subclass our GUI
         self.pack()
         widget = Button(self, text='Quit', command=self.quit)
         widget.pack(expand=YES, fill=BOTH, side=LEFT)
-    def quit(self):
-        ans = askokcancel('Verifier exit', "Voulez vous quitter l'application?")
-        if ans: Frame.quit(self)
 
-if __name__ == '__main__':  Quitter().mainloop()
-#def ende(): Quitter().mainloop()
+    def quit(self):
+        ans = askokcancel(
+            'Verifier exit', "Voulez vous quitter l'application?")
+        if ans:
+            Frame.quit(self)
+
+
+if __name__ == '__main__':
+    Quitter().mainloop()
+# def ende(): Quitter().mainloop()
