@@ -8,8 +8,6 @@
         $queryGff
         $targetGff
         
-        $uq
-        $ut
         $fd
 
         -t $t
