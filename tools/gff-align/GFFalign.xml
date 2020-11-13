@@ -2,11 +2,11 @@
     <requirements>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        GFFalign.py
+        python3 $__tool_directory__/GFFalign.py
 
         $aln
-        $queryGff
-        $targetGff
+        $queryGFF
+        $targetGFF
         
         $fd
 
@@ -20,8 +20,8 @@
         <param name="queryGFF" type="data" format="gff" label="Query organism GFF file" help="Gff file of the query organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the 'gene' lines. Try to format the file with AWK: awk `{if ($3==\'gene\') print $0}` GFFfile" />
         <param name="targetGFF" type="data" format="gff" label="Target organism GFF file" help="Gff file of the 'target' organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the gene lines as explained in queryGff" />
 
-        <!--<param argument="uq" type="boolean" checked="false" truevalue="--use-query-database" falsevalue="" label="Use query database" help="Use this parament if you already have a query gffutils formatted database or if it's not the first time you run this script" />-->
-        <!--<param argument="ut" type="boolean" checked="false" truevalue="--use-target-database" falsevalue="" label="Use target database" help="Use this parament if you already have a target gffutils formatted database or if it's not the first time you run this script" />-->
+        <!--<param argument="uq" type="boolean" checked="false" truevalue="-use-query-database" falsevalue="" label="Use query database" help="Use this parament if you already have a query gffutils formatted database or if it's not the first time you run this script" />-->
+        <!--<param argument="ut" type="boolean" checked="false" truevalue="-use-target-database" falsevalue="" label="Use target database" help="Use this parament if you already have a target gffutils formatted database or if it's not the first time you run this script" />-->
         <param argument="fd" type="boolean" checked="false" truevalue="--force-database" falsevalue="" label="Force database" help="Delete old gffutils databases and create new ones" />
         <!--<param name="m" type="boolean" checked="false" truevalue="-memory" falsevalue="" label="Memory" help="Create an in-memory database. This option can't be used with the other DB options. Probably usefull in Galaxy integration" />-->
         <!--<param arg="e" type="boolean" checked="false" truevalue="-extract" falsevalue="" label="Extract" help="Extract the fasta sequence of the new suggested gene. It takes two argument: the fasta file of the genome and the name of the output file. This will slow down the process A LOT." />
@@ -46,7 +46,7 @@
             <param name="aln" value="genome_aln.tab" ftype="tabular"/>
             <param name="queryGFF" value="query.gff" ftype="gff"/>
             <param name="targetGFF" value="target.gff" ftype="gff"/>
-            <output name="output" file="outptut.gff" ftype="gff"/>
+            <output name="output_file" file="output.gff" ftype="gff"/>
         </test>
     </tests>
 
