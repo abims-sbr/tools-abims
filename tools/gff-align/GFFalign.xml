@@ -52,7 +52,7 @@
 
 
     <help><![CDATA[
-        Tool to extract genes coordinates from a whole genome alignent.
+        Tool to extract genes coordinates from a whole genome alignment.
         This script needs an alignement in TAB format and two gff files.
     ]]></help>
     <citations>
