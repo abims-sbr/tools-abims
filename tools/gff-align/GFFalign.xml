@@ -4,29 +4,27 @@
         <requirement type="package" version="0.10.1">gffutils</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        python3 $__tool_directory__/GFFalign.py
+        python3 '$__tool_directory__/GFFalign.py'
 
         '$aln'
         '$queryGFF'
         '$targetGFF'
         
         -m
+        -t $t
+        -v $v
+        #if $e != ''
+            -e $e 'extracted_sequence.fa'
+        #end if
 
         > '$output_file'
     ]]></command>
-<!--
-        -t $t
-        -v $v
--->
     <inputs>
         <param name="aln" type="data" format="tabular" label="Alignement file" help="Alignment file in TAB format. The suggested way to obtain it is to run Last and than convert the file from MAF to TAB with maf-convert" />
         <param name="queryGFF" type="data" format="gff" label="Query organism GFF file" help="Gff file of the query organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the 'gene' lines. Try to format the file with AWK: awk `{if ($3==\'gene\') print $0}` GFFfile" />
         <param name="targetGFF" type="data" format="gff" label="Target organism GFF file" help="Gff file of the 'target' organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the gene lines as explained in queryGff" />
 
-        <!--<param arg="-m" type="boolean" checked="false" truevalue="-memory" falsevalue="" label="Memory" help="Create an in-memory database. This option can't be used with the other DB options. Probably usefull in Galaxy integration" />-->
-        <!--<param arg="-e" type="boolean" checked="false" truevalue="-extract" falsevalue="" label="Extract" help="Extract the fasta sequence of the new suggested gene. It takes two argument: the fasta file of the genome and the name of the output file. This will slow down the process A LOT." />
-        -e $genome_fasta_file $output_file_name-->
-
+        <!--<param argument="-m" type="boolean" checked="false" truevalue="--memory" falsevalue="" label="Memory" help="Create an in-memory database. This option can't be used with the other DB options. Probably usefull in Galaxy integration" />-->
         <param argument="-t" type="integer" value="30" label="Interval" help="Interval, in nucleotide, within a gene is considered in the same position." />
         <param argument="-v" type="select" multiple="true" label="Verbosity" help="Output options. If not specify the software shows only the genes that are in the exact position of the genes in the target. It's possible to show annotated genes that are in aligned regions but that have different lengths or in slightly different positions. It's possible to select multiple values." >
             <option value="All">All</option>
@@ -36,6 +34,7 @@
             <option value="new" selected="true">New</option>
             <option value="confirmed">Confirmed</option>
         </param>
+        <param argument="-e" type="data" format="fasta" optional="true" label="Extract fasta sequence of the new suggested gene" help="Extract the fasta sequence of the new suggested gene. Use the fasta file of the genome to activate this option. This will slow down the process A LOT." />
     </inputs>
     <outputs>
         <data name="output_file" format="gff" label="GFF align from ${on_string}" />
@@ -46,10 +45,11 @@
             <param name="aln" value="genome_aln.tab" ftype="tabular"/>
             <param name="queryGFF" value="query.gff" ftype="gff"/>
             <param name="targetGFF" value="target.gff" ftype="gff"/>
+            <param name="t" value="30"/>
+            <param name="v" value="new"/>
             <output name="output_file" file="output.gff" ftype="gff"/>
         </test>
     </tests>
-
 
     <help><![CDATA[
         Tool to extract genes coordinates from a whole genome alignment.
