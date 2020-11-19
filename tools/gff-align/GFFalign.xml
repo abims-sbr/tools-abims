@@ -24,7 +24,7 @@
         <param name="queryGFF" type="data" format="gff" label="Query organism GFF file" help="Gff file of the query organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the 'gene' lines. Try to format the file with AWK: awk `{if ($3==\'gene\') print $0}` GFFfile" />
         <param name="targetGFF" type="data" format="gff" label="Target organism GFF file" help="Gff file of the 'target' organism. The gene IDs in the GFF must be unique. To solve the problem please extract only the gene lines as explained in queryGff" />
 
-        <!--<param argument="-m" type="boolean" checked="false" truevalue="--memory" falsevalue="" label="Memory" help="Create an in-memory database. This option can't be used with the other DB options. Probably usefull in Galaxy integration" />-->
+        <!--<param argument="-m" type="boolean" checked="false" truevalue="-memory" falsevalue="" label="Memory" help="Create an in-memory database. This option can't be used with the other DB options. Probably usefull in Galaxy integration" />-->
         <param argument="-t" type="integer" value="30" label="Interval" help="Interval, in nucleotide, within a gene is considered in the same position." />
         <param argument="-v" type="select" multiple="true" label="Verbosity" help="Output options. If not specify the software shows only the genes that are in the exact position of the genes in the target. It's possible to show annotated genes that are in aligned regions but that have different lengths or in slightly different positions. It's possible to select multiple values." >
             <option value="All">All</option>
