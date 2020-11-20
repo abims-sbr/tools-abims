@@ -13,7 +13,7 @@
         -m
         -t $t
         -v $v
-        #if $e != ''
+        #if $extract.extract_fasta == 'true'
             -e $e 'extracted_sequence.fa'
         #end if
 
@@ -34,10 +34,16 @@
             <option value="new" selected="true">New</option>
             <option value="confirmed">Confirmed</option>
         </param>
-        <param argument="-e" type="data" format="fasta" optional="true" label="Extract fasta sequence of the new suggested gene" help="Extract the fasta sequence of the new suggested gene. Use the fasta file of the genome to activate this option. This will slow down the process A LOT." />
+        <conditional name="extract">
+            <param name="extract_fasta" type="boolean" checked="false" label="Extract fasta sequence of the new suggested gene" help="This option needs the fasta file of the genome. This will slow down the process A LOT."/>
+            <when value="true">
+                <param argument="-e" type="data" format="fasta" optional="true" label="Fasta file of the genome."/>
+            </when>
+            <when value="false"/>
+        </conditional>
     </inputs>
     <outputs>
-        <data name="output_file" format="gff" label="GFF align from ${on_string}" />
+        <data name="output_file" format="gff" label="GFF align from ${on_string}"/>
     </outputs>
 
     <tests>
