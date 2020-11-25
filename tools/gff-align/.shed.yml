@@ -7,5 +7,5 @@ long_description: |
         GFFalign extracts genes coordinates from a whole genome alignment.
         This script needs an alignement in TAB format and two gff files.
 categories:
-- Genome alignment
+- Genome annotation
 type: unrestricted
