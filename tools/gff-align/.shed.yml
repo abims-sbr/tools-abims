@@ -1,4 +1,4 @@
-name: GFFalign
+name: gff-align
 owner: abims-sbr
 homepage_url: https://github.com/eosc-life/D4_marine_eukaryote_genomics_portal
 remote_repository_url: https://github.com/abims-sbr/tools-abims/tools/gff-align
