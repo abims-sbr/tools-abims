@@ -1,4 +1,4 @@
-<tool id="gff_align" name="GFF align" version="0.1.0+galaxy0" python_template_version="3.5">
+<tool id="gffalign" name="GFF align" version="0.1.0+galaxy0" python_template_version="3.5">
     <requirements>
         <requirement type="package" version="1.78">biopython</requirement>
         <requirement type="package" version="0.10.1">gffutils</requirement>
