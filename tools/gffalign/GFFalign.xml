@@ -48,7 +48,7 @@
     <outputs>
         <data name="output_file" format="gff" label="GFF align from ${on_string}"/>
         <data name="output_extract_fasta" format="fasta" label="Extracted fasta sequence from ${on_string}">
-            <filter>options['extract_fasta'] == 'true'</filter>
+            <filter>extract['extract_fasta'] == 'true'</filter>
         </data>
     </outputs>
 
